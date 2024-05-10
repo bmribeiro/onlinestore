@@ -17,4 +17,8 @@ public class ColourService {
     public List<Colour> getAllColours() {
         return (List<Colour>) colourRepository.findAll();
     }
+    
+    public Colour addColour(Colour colourEntity) {
+		return colourRepository.save(colourEntity);
+	}
 }

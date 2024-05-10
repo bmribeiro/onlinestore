@@ -17,4 +17,9 @@ public class SizeCategoryService {
     public List<SizeCategory> getAllSizeCategories() {
         return (List<SizeCategory>) sizeCategoryRepository.findAll();
     }
+    
+    public SizeCategory addSizeCategory(SizeCategory sizeCategoryEntity) {
+		return sizeCategoryRepository.save(sizeCategoryEntity);
+	}
+    
 }
