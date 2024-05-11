@@ -11,10 +11,14 @@ import com.onlinestore.javarest.repository.ProductCategoryRepository;
 @Service
 public class ProductCategoryService {
 
-    @Autowired
-    private ProductCategoryRepository productCategoryRepository;
+	@Autowired
+	private ProductCategoryRepository productCategoryRepository;
 
-    public List<ProductCategory> getAllProductCategories() {
-        return (List<ProductCategory>) productCategoryRepository.findAll();
-    }
+	public List<ProductCategory> getAllProductCategories() {
+		return (List<ProductCategory>) productCategoryRepository.findAll();
+	}
+
+	public ProductCategory addProductCategory(ProductCategory productCategoryEntity) {
+		return productCategoryRepository.save(productCategoryEntity);
+	}
 }

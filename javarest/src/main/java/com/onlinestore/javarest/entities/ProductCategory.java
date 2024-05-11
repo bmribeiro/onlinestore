@@ -1,6 +1,7 @@
 package com.onlinestore.javarest.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,11 +21,11 @@ public class ProductCategory {
 
     private String categoryDescription;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "size_category_id")
     private SizeCategory sizeCategory;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "parent_product_category_id")
     private ProductCategory parentProductCategory;
 
