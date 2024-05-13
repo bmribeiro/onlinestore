@@ -12,23 +12,25 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class ProductItem {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer productItemId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer productItemId;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
+	@ManyToOne
+	@JoinColumn(name = "product_id")
+	private Product product;
 
-    @ManyToOne
-    @JoinColumn(name = "colour_id")
-    private Colour colour;
+	@ManyToOne
+	@JoinColumn(name = "colour_id")
+	private Colour colour;
 
-    private BigDecimal originalPrice;
+	private BigDecimal originalPrice;
 
-    private BigDecimal salePrice;
+	private BigDecimal salePrice;
 
-    public Integer getProductItemId() {
+	private String productCode;
+
+	public Integer getProductItemId() {
 		return productItemId;
 	}
 
@@ -76,8 +78,4 @@ public class ProductItem {
 		this.productCode = productCode;
 	}
 
-	private String productCode;
-    
-    
-    
 }

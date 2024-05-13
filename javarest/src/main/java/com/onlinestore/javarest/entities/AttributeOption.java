@@ -1,6 +1,7 @@
 package com.onlinestore.javarest.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -14,7 +15,7 @@ public class AttributeOption {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer attributeOptionId;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "attribute_type_id")
 	private AttributeType attributeType;
 

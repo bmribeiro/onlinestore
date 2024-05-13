@@ -11,10 +11,14 @@ import com.onlinestore.javarest.repository.AttributeOptionRepository;
 @Service
 public class AttributeOptionService {
 
-    @Autowired
-    private AttributeOptionRepository attributeOptionRepository;
+	@Autowired
+	private AttributeOptionRepository attributeOptionRepository;
 
-    public List<AttributeOption> getAllAttributeOptions() {
-        return (List<AttributeOption>) attributeOptionRepository.findAll();
-    }
+	public List<AttributeOption> getAllAttributeOptions() {
+		return (List<AttributeOption>) attributeOptionRepository.findAll();
+	}
+
+	public AttributeOption addAttributeOption(AttributeOption attributeOptionEntity) {
+		return attributeOptionRepository.save(attributeOptionEntity);
+	}
 }

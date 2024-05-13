@@ -17,4 +17,8 @@ public class AttributeTypeService {
     public List<AttributeType> getAllAttributeTypes() {
         return (List<AttributeType>) attributeTypeRepository.findAll();
     }
+    
+    public AttributeType addAttributeType(AttributeType attributeTypeEntity) {
+		return attributeTypeRepository.save(attributeTypeEntity);
+	}
 }

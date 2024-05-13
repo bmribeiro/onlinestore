@@ -22,7 +22,7 @@ public class ProductVariation {
     @JoinColumn(name = "size_id")
     private SizeOption size;
 
-    private Integer quantityInStock;
+    private Integer qtyInStock;
 
 	public Integer getVariationId() {
 		return variationId;
@@ -48,12 +48,13 @@ public class ProductVariation {
 		this.size = size;
 	}
 
-	public Integer getQuantityInStock() {
-		return quantityInStock;
+	public Integer getQtyInStock() {
+		return qtyInStock;
 	}
 
-	public void setQuantityInStock(Integer quantityInStock) {
-		this.quantityInStock = quantityInStock;
+	public void setQtyInStock(Integer qtyInStock) {
+		this.qtyInStock = qtyInStock;
 	}
 
+	
 }

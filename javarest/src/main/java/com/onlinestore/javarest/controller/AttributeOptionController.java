@@ -3,7 +3,11 @@ package com.onlinestore.javarest.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,5 +24,11 @@ public class AttributeOptionController {
     @GetMapping
     public List<AttributeOption> getAllAttributeOptions() {
         return attributeOptionService.getAllAttributeOptions();
+    }
+    
+    @PostMapping
+    public ResponseEntity<AttributeOption> createBrand(@RequestBody AttributeOption attributeOption) {
+    	AttributeOption savedAttributeOption = attributeOptionService.addAttributeOption(attributeOption);
+        return new ResponseEntity<>(savedAttributeOption, HttpStatus.CREATED);
     }
 }
