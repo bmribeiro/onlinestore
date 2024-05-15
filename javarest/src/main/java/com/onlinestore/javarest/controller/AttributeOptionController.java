@@ -1,5 +1,6 @@
 package com.onlinestore.javarest.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,4 +53,17 @@ public class AttributeOptionController {
 		return ResponseEntity.ok().build();
 	}
 
+	/**
+	 * Reports
+	 */
+
+	@GetMapping(path = "/excel", produces = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+	public ResponseEntity<byte[]> getAttributeOptionsExcel() throws IOException {
+		return attributeOptionService.getAttributeOptionsExcel();
+	}
+
+	@GetMapping(path = "/pdf", produces = "application/pdf")
+	public byte[] getAttributeOptionsPdf() throws IOException {
+		return attributeOptionService.getAttributeOptionsPdf();
+	}
 }

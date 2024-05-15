@@ -16,7 +16,7 @@ public class UserPaymentPhone {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private Integer id;
+	private Integer userPaymentPhoneid;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
@@ -28,12 +28,13 @@ public class UserPaymentPhone {
 	@Column(name = "user_phone_token", length = 20)
 	private String userPhoneToken;
 
-	public Integer getId() {
-		return id;
+
+	public Integer getUserPaymentPhoneid() {
+		return userPaymentPhoneid;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setUserPaymentPhoneid(Integer userPaymentPhoneid) {
+		this.userPaymentPhoneid = userPaymentPhoneid;
 	}
 
 	public User getUser() {
