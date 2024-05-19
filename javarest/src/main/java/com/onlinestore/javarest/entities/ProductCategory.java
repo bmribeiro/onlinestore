@@ -1,5 +1,7 @@
 package com.onlinestore.javarest.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -7,27 +9,32 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Transient;
 
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ProductCategory {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer productCategoryId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer productCategoryId;
 
-    private String categoryName;
+	private String categoryName;
 
-    private String categoryImage;
+	private String categoryImage;
 
-    private String categoryDescription;
+	@Transient
+	private String imageBytes;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "size_category_id")
-    private SizeCategory sizeCategory;
+	private String categoryDescription;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "parent_product_category_id")
-    private ProductCategory parentProductCategory;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "size_category_id")
+	private SizeCategory sizeCategory;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "parent_product_category_id")
+	private ProductCategory parentProductCategory;
 
 	public Integer getProductCategoryId() {
 		return productCategoryId;
@@ -53,6 +60,14 @@ public class ProductCategory {
 		this.categoryImage = categoryImage;
 	}
 
+	public String getImageBytes() {
+		return imageBytes;
+	}
+
+	public void setImageBytes(String imageBytes) {
+		this.imageBytes = imageBytes;
+	}
+
 	public String getCategoryDescription() {
 		return categoryDescription;
 	}
@@ -76,7 +91,5 @@ public class ProductCategory {
 	public void setParentProductCategory(ProductCategory parentProductCategory) {
 		this.parentProductCategory = parentProductCategory;
 	}
-    
-    
 
 }

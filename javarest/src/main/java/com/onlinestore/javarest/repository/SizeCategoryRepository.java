@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.onlinestore.javarest.entities.SizeCategory;
 
 @Repository
-public interface SizeCategoryRepository extends CrudRepository<SizeCategory, Long> {
+public interface SizeCategoryRepository extends CrudRepository<SizeCategory, Integer> {
 
 }	

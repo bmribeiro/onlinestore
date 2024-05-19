@@ -10,26 +10,26 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class ProductVariation {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer variationId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer productVariationId;
 
-    @ManyToOne
-    @JoinColumn(name = "product_item_id")
-    private ProductItem productItem;
+	@ManyToOne
+	@JoinColumn(name = "product_item_id")
+	private ProductItem productItem;
 
-    @ManyToOne
-    @JoinColumn(name = "size_id")
-    private SizeOption size;
+	@ManyToOne
+	@JoinColumn(name = "size_id")
+	private SizeOption size;
 
-    private Integer qtyInStock;
+	private Integer qtyInStock;
 
-	public Integer getVariationId() {
-		return variationId;
+	public Integer getProductVariationId() {
+		return productVariationId;
 	}
 
-	public void setVariationId(Integer variationId) {
-		this.variationId = variationId;
+	public void setProductVariationId(Integer productVariationId) {
+		this.productVariationId = productVariationId;
 	}
 
 	public ProductItem getProductItem() {
@@ -56,5 +56,4 @@ public class ProductVariation {
 		this.qtyInStock = qtyInStock;
 	}
 
-	
 }

@@ -22,7 +22,7 @@ public class ProductCover {
 
     private Integer imageOrder;
 
-    private Boolean isAlbumCover;
+    private boolean isAlbumCover;
 
 	public Integer getImageId() {
 		return imageId;
@@ -56,11 +56,11 @@ public class ProductCover {
 		this.imageOrder = imageOrder;
 	}
 
-	public Boolean getIsAlbumCover() {
+	public boolean getIsAlbumCover() {
 		return isAlbumCover;
 	}
 
-	public void setIsAlbumCover(Boolean isAlbumCover) {
+	public void setIsAlbumCover(boolean isAlbumCover) {
 		this.isAlbumCover = isAlbumCover;
 	}
 

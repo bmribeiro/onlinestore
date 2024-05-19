@@ -19,6 +19,7 @@ import com.onlinestore.javarest.aws.PutObject;
 import com.onlinestore.javarest.aws.S3BucketService;
 import com.onlinestore.javarest.entities.AttributeOption;
 import com.onlinestore.javarest.report.ExcelReportGenerator;
+import com.onlinestore.javarest.report.PDFReportGenerator;
 import com.onlinestore.javarest.repository.AttributeOptionRepository;
 
 import jakarta.transaction.Transactional;
@@ -31,6 +32,9 @@ public class AttributeOptionService {
 
 	@Autowired
 	private ExcelReportGenerator excelReportGenerator;
+	
+	@Autowired
+	private PDFReportGenerator pdfReportGenerator;
 
 	@Autowired
 	private S3BucketService s3BucketService;

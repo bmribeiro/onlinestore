@@ -12,7 +12,7 @@ public class SizeOption {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer sizeId;
+    private Integer sizeOptionId;
 
     private String sizeName;
 
@@ -22,12 +22,12 @@ public class SizeOption {
     @JoinColumn(name = "size_category_id")
     private SizeCategory sizeCategory;
 
-	public Integer getSizeId() {
-		return sizeId;
+	public Integer getSizeOptionId() {
+		return sizeOptionId;
 	}
 
-	public void setSizeId(Integer sizeId) {
-		this.sizeId = sizeId;
+	public void setSizeOptionId(Integer sizeOptionId) {
+		this.sizeOptionId = sizeOptionId;
 	}
 
 	public String getSizeName() {

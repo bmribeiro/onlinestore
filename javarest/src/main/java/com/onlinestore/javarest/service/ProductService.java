@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.onlinestore.javarest.entities.Product;
 import com.onlinestore.javarest.repository.ProductRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class ProductService {
@@ -24,17 +27,46 @@ public class ProductService {
 		return (List<Product>) productRepository.findAll();
 	}
 
+	public Optional<Product> getProductById(Long productCategoryId) {
+		return productRepository.findById(productCategoryId.intValue());
+	}
+
 	public Product addProduct(Product productEntity, MultipartFile file) {
 
 		Product product = productRepository.save(productEntity);
 
+		if (!file.equals(null)) {
+			uploadFile(productEntity.getProductCategory().getProductCategoryId().toString(),
+					productEntity.getProductId().toString(), file);
+		}
+		return product;
+	}
+
+	public Product updateProduct(Product product, MultipartFile file) {
+
+		if (!file.equals(null)) {
+			uploadFile(product.getProductCategory().getProductCategoryId().toString(),
+					product.getProductId().toString(), file);
+		}
+		return productRepository.save(product);
+	}
+
+	@Transactional
+	public void deleteProductById(Long productId) {
+		productRepository.deleteById(productId.intValue());
+	}
+
+	// Upload File
+	private void uploadFile(String folderProductCategory, String folderProduct, MultipartFile file) {
+
+		System.out.println("Caterogy: " + folderProductCategory);
+		System.out.println("Product: " + folderProduct);
+
 		String projectPath = System.getProperty("user.dir");
 
-		String categoryId = String.valueOf(product.getProductCategory().getProductCategoryId());
-		String productId = String.valueOf(product.getProductId());
-
-		Path imagesPath = Paths.get(projectPath, "images", categoryId, productId);
-
+		Path imagesPath = Paths.get(projectPath, "images", folderProductCategory + "//" + folderProduct);
+		System.out.println("Path: " + imagesPath);
+		
 		if (!Files.exists(imagesPath)) {
 			try {
 				Files.createDirectories(imagesPath);
@@ -46,11 +78,10 @@ public class ProductService {
 
 			} catch (IOException e) {
 				e.printStackTrace();
-				System.err.println("Falha ao criar a pasta: " + product.getProductId().toString());
+				System.err.println("Falha ao criar a pasta: " + folderProductCategory);
 			}
 		} else {
-			System.out.println("A pasta já existe: " + product.getProductId().toString());
+			System.out.println("A pasta já existe: " + folderProduct);
 		}
-		return product;
 	}
 }

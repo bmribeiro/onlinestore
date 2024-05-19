@@ -1,6 +1,7 @@
 package com.onlinestore.javarest.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -14,11 +15,11 @@ public class ProductAttribute {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer productAttributeId;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "product_id")
 	private Product product;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "attribute_option_id")
 	private AttributeOption attributeOption;
 

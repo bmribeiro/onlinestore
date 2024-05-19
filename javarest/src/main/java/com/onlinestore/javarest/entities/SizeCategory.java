@@ -1,6 +1,5 @@
 package com.onlinestore.javarest.entities;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,7 +10,7 @@ public class SizeCategory {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer categoryId;
+	private Integer sizeCategoryId;
 
 	private String sizeCategoryName;
 
@@ -22,12 +21,12 @@ public class SizeCategory {
 		this.sizeCategoryName = categoryName;
 	}
 
-	public Integer getCategoryId() {
-		return categoryId;
+	public Integer getSizeCategoryId() {
+		return sizeCategoryId;
 	}
 
-	public void setCategoryId(Integer categoryId) {
-		this.categoryId = categoryId;
+	public void setSizeCategoryId(Integer sizeCategoryId) {
+		this.sizeCategoryId = sizeCategoryId;
 	}
 
 	public String getSizeCategoryName() {

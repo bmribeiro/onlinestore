@@ -33,10 +33,10 @@ public class User {
 	private String userToken;
 
 	@Column(name = "is_active")
-	private Boolean isActive = false;
+	private boolean isActive = false;
 
 	@Column(name = "is_google")
-	private Boolean isGoogle = false;
+	private boolean isGoogle = false;
 
 	@Column(name = "created_at", nullable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private Timestamp createdAt;
@@ -85,19 +85,19 @@ public class User {
 		this.userToken = userToken;
 	}
 
-	public Boolean getIsActive() {
+	public boolean getIsActive() {
 		return isActive;
 	}
 
-	public void setIsActive(Boolean isActive) {
+	public void setIsActive(boolean isActive) {
 		this.isActive = isActive;
 	}
 
-	public Boolean getIsGoogle() {
+	public boolean getIsGoogle() {
 		return isGoogle;
 	}
 
-	public void setIsGoogle(Boolean isGoogle) {
+	public void setIsGoogle(boolean isGoogle) {
 		this.isGoogle = isGoogle;
 	}
 

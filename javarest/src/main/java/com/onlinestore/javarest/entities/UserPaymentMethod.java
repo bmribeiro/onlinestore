@@ -36,7 +36,7 @@ public class UserPaymentMethod {
 	private Date expiryDate;
 
 	@Column(name = "is_default")
-	private Boolean isDefault;
+	private boolean isDefault;
 
 	public Integer getUserPaymentMethodId() {
 		return userPaymentMethodId;
@@ -78,11 +78,11 @@ public class UserPaymentMethod {
 		this.expiryDate = expiryDate;
 	}
 
-	public Boolean getIsDefault() {
+	public boolean getIsDefault() {
 		return isDefault;
 	}
 
-	public void setIsDefault(Boolean isDefault) {
+	public void setIsDefault(boolean isDefault) {
 		this.isDefault = isDefault;
 	}
 
