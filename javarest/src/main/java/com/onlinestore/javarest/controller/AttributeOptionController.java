@@ -32,23 +32,23 @@ public class AttributeOptionController {
 	}
 
 	@GetMapping(path = "/{id}")
-	public Optional<AttributeOption> getAttributeOptionsById(@PathVariable Long id) {
+	public Optional<AttributeOption> getAttributeOptionById(@PathVariable Long id) {
 		return attributeOptionService.getAttributeOptionById(id);
 	}
 
 	@PostMapping
-	public ResponseEntity<AttributeOption> createBrand(@RequestBody AttributeOption attributeOption) {
+	public ResponseEntity<AttributeOption> createAttributeOption(@RequestBody AttributeOption attributeOption) {
 		AttributeOption savedAttributeOption = attributeOptionService.addAttributeOption(attributeOption);
 		return new ResponseEntity<>(savedAttributeOption, HttpStatus.CREATED);
 	}
 
 	@PutMapping()
-	public AttributeOption updateAttributeOptions(@RequestBody AttributeOption attributeOption) {
+	public AttributeOption updateAttributeOption(@RequestBody AttributeOption attributeOption) {
 		return attributeOptionService.updateAttributeOption(attributeOption);
 	}
 
 	@DeleteMapping(path = "/{id}")
-	public ResponseEntity<Void> deleteAttributeOptionsById(@PathVariable Long id) {
+	public ResponseEntity<Void> deleteAttributeOptionById(@PathVariable Long id) {
 		attributeOptionService.deleteAttributeOptionById(id);
 		return ResponseEntity.ok().build();
 	}

@@ -1,7 +1,10 @@
 package com.onlinestore.javarest.controller;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,6 +54,21 @@ public class ProductCategoryController {
 		else {
 			productsCategory = (List<ProductCategory>) productCategoryService.getAllProductCategories();
 		}
+
+		for (ProductCategory el : productsCategory) {
+
+			if (el.getCategoryImage() != null) {
+
+				String directoryPath = "C:/Users/Bruno/git/onlinestore/javarest/images";
+				directoryPath = directoryPath + "/" + el.getProductCategoryId().toString() + "/"
+						+ el.getCategoryImage();
+
+				byte[] imageBytes = Files.readAllBytes(Paths.get(directoryPath));
+				String imgEncodedString = Base64.getEncoder().encodeToString(imageBytes);
+				el.setImageBytes(imgEncodedString);
+			}
+		}
+
 		return productsCategory;
 	}
 

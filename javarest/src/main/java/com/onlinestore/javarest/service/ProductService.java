@@ -26,6 +26,10 @@ public class ProductService {
 	public List<Product> getAllProducts() {
 		return (List<Product>) productRepository.findAll();
 	}
+	
+	public List<Product> getProductsByCategory(int categoryId) {
+		return (List<Product>) productRepository.getProductByCategory(Integer.valueOf(categoryId));
+	}
 
 	public Optional<Product> getProductById(Long productCategoryId) {
 		return productRepository.findById(productCategoryId.intValue());
@@ -84,4 +88,6 @@ public class ProductService {
 			System.out.println("A pasta já existe: " + folderProduct);
 		}
 	}
+
+	
 }

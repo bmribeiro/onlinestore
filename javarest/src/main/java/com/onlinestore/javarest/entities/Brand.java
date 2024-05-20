@@ -16,7 +16,6 @@ public class Brand {
 
 	private String brandDescription;
 
-	// Getters e setters
 	public Integer getBrandId() {
 		return brandId;
 	}

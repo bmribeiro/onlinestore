@@ -8,11 +8,11 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class DataSourceConfig {
-	
+
 	@Bean
 	public DataSource getDataSource() {
-		return DataSourceBuilder.create().driverClassName("[driver_class_name]").url("[db_url]/[schema]")
-				.username("[db_username]").password("[db_password]").build();
+		return DataSourceBuilder.create().driverClassName("com.mysql.cj.jdbc.Driver")
+				.url("jdbc:mysql://database.cdm044sim9ew.us-east-1.rds.amazonaws.com:3306/trendyurbano").username("admin")
+				.password("adminadmin").build();
 	}
-	
 }

@@ -1,6 +1,5 @@
 package com.onlinestore.javarest.service;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,7 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.onlinestore.javarest.entities.AttributeOption;
+import com.onlinestore.javarest.entities.Colour;
+import com.onlinestore.javarest.entities.Product;
 import com.onlinestore.javarest.entities.ProductItem;
 import com.onlinestore.javarest.repository.ProductItemRepository;
 
@@ -27,6 +27,14 @@ public class ProductItemService {
 
 	public List<ProductItem> getAllProductItems() {
 		return (List<ProductItem>) productItemRepository.findAll();
+	}
+	
+	public List<ProductItem> getProductItemsByProduct(int productId) {
+		return productItemRepository.getProductItemsByProduct(Integer.valueOf(productId));
+	}
+	
+	public List<Colour> findColoursByProducItemtId(int productId) {
+		return productItemRepository.findColoursByProducItemtId(productId);
 	}
 
 	public Optional<ProductItem> getProductItemById(Long productItemId) {
@@ -112,4 +120,8 @@ public class ProductItemService {
 			System.out.println("A pasta já existe: " + folderProduct);
 		}
 	}
+
+	
+
+	
 }

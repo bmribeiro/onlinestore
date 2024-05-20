@@ -29,6 +29,11 @@ public class ProductVariationController {
 	public List<ProductVariation> getAllProductVariations() {
 		return productVariationService.getAllProductVariations();
 	}
+	
+	@GetMapping(path = "/productItem/{productItemId}")
+	public List<ProductVariation> getProductVariationByProductItem(@PathVariable int productItemId) {
+		return productVariationService.getProductVariationByProductItem(productItemId);
+	}
 
 	@GetMapping(path = "/{id}")
 	public Optional<ProductVariation> getProductVariationById(@PathVariable Long id) {
@@ -36,8 +41,8 @@ public class ProductVariationController {
 	}
 
 	@PostMapping
-	public ResponseEntity<ProductVariation> createProductVariation(@RequestBody ProductVariation attributeOption) {
-		ProductVariation savedProductVariation = productVariationService.addProductVariation(attributeOption);
+	public ResponseEntity<ProductVariation> createProductVariation(@RequestBody ProductVariation productVariation) {
+		ProductVariation savedProductVariation = productVariationService.addProductVariation(productVariation);
 		return new ResponseEntity<>(savedProductVariation, HttpStatus.CREATED);
 	}
 

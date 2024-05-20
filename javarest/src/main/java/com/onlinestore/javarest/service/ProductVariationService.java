@@ -21,6 +21,10 @@ public class ProductVariationService {
         return (List<ProductVariation>) productVariationRepository.findAll();
     }
     
+    public List<ProductVariation> getProductVariationByProductItem(int productItemId) {
+    	return (List<ProductVariation>) productVariationRepository.getProductVariationsByProductItem(Integer.valueOf(productItemId));
+	}
+    
     public Optional<ProductVariation> getProductVariationById(Long attributeOptionId) {
 		return productVariationRepository.findById(attributeOptionId.intValue());
 	}
@@ -37,4 +41,6 @@ public class ProductVariationService {
 	public void deleteProductVariationById(Long attributeOptionId) {
 		productVariationRepository.deleteById(attributeOptionId.intValue());
 	}
+
+	
 }
