@@ -35,4 +35,8 @@ public class PaymentType {
 		this.value = value;
 	}
 
+	@Override
+	public String toString() {
+		return "PaymentType [paymentTypeId=" + paymentTypeId + ", value=" + value + "]";
+	}
 }

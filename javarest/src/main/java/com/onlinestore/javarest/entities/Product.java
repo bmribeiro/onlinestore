@@ -1,41 +1,52 @@
 package com.onlinestore.javarest.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Product {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer productId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "product_id")
+	private Integer productId;
 
-    @ManyToOne
-    @JoinColumn(name = "product_category_id")
-    private ProductCategory productCategory;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "product_category_id")
+	private ProductCategory productCategory;
 
-    @ManyToOne
-    @JoinColumn(name = "brand_id")
-    private Brand brand;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "brand_id")
+	private Brand brand;
 
-    private String productName;
+	@Column(name = "product_name")
+	private String productName;
 
-    private String productDescription;
+	@Column(name = "product_description")
+	private String productDescription;
 
-    private String modelHeight;
+	@Column(name = "care_instructions")
+	private String careInstructions;
 
-    private String modelWearing;
+	@Column(name = "about")
+	private String about;
 
-    private String careInstructions;
-
-    private String about;
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonManagedReference
+	private List<ProductImage> productImages;
 
 	public Integer getProductId() {
 		return productId;
@@ -77,22 +88,6 @@ public class Product {
 		this.productDescription = productDescription;
 	}
 
-	public String getModelHeight() {
-		return modelHeight;
-	}
-
-	public void setModelHeight(String modelHeight) {
-		this.modelHeight = modelHeight;
-	}
-
-	public String getModelWearing() {
-		return modelWearing;
-	}
-
-	public void setModelWearing(String modelWearing) {
-		this.modelWearing = modelWearing;
-	}
-
 	public String getCareInstructions() {
 		return careInstructions;
 	}
@@ -108,8 +103,22 @@ public class Product {
 	public void setAbout(String about) {
 		this.about = about;
 	}
+	
+	public List<ProductImage> getProductImages() {
+		return productImages;
+	}
 
-    
-    
-    
+	public void setProductImages(List<ProductImage> productImages) {
+		if (productImages.isEmpty()) {
+			this.productImages = new ArrayList<ProductImage>();
+		}
+		this.productImages = productImages;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", productCategory=" + productCategory + ", brand=" + brand
+				+ ", productName=" + productName + ", productDescription=" + productDescription + ", careInstructions="
+				+ careInstructions + ", about=" + about + "]";
+	}
 }

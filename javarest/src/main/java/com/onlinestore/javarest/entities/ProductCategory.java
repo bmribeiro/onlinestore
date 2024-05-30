@@ -1,7 +1,12 @@
 package com.onlinestore.javarest.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -9,23 +14,20 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Transient;
+import jakarta.persistence.OneToMany;
 
 @Entity
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class ProductCategory {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "product_category_id")
 	private Integer productCategoryId;
 
+	@Column(name = "category_name")
 	private String categoryName;
 
-	private String categoryImage;
-
-	@Transient
-	private String imageBytes;
-
+	@Column(name = "category_description")
 	private String categoryDescription;
 
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -35,6 +37,14 @@ public class ProductCategory {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "parent_product_category_id")
 	private ProductCategory parentProductCategory;
+
+	@OneToMany(mappedBy = "productCategory", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonManagedReference
+	private List<CategoryImage> categoryImages;
+
+	public ProductCategory() {
+		super();
+	}
 
 	public Integer getProductCategoryId() {
 		return productCategoryId;
@@ -50,22 +60,6 @@ public class ProductCategory {
 
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
-	}
-
-	public String getCategoryImage() {
-		return categoryImage;
-	}
-
-	public void setCategoryImage(String categoryImage) {
-		this.categoryImage = categoryImage;
-	}
-
-	public String getImageBytes() {
-		return imageBytes;
-	}
-
-	public void setImageBytes(String imageBytes) {
-		this.imageBytes = imageBytes;
 	}
 
 	public String getCategoryDescription() {
@@ -92,4 +86,20 @@ public class ProductCategory {
 		this.parentProductCategory = parentProductCategory;
 	}
 
+	public List<CategoryImage> getCategoryImages() {
+		return categoryImages;
+	}
+
+	public void setCategoryImages(List<CategoryImage> categoryImages) {
+		this.categoryImages = categoryImages;
+	}
+
+	@Override
+	public String toString() {
+		return "ProductCategory [productCategoryId=" + productCategoryId + ", categoryName=" + categoryName
+				+ ", categoryDescription=" + categoryDescription + ", sizeCategory=" + sizeCategory
+				+ ", parentProductCategory=" + parentProductCategory + ", categoryImages=" + categoryImages + "]";
+	}
+
+	
 }

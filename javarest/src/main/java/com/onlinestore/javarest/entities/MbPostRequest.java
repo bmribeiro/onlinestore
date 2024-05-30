@@ -148,4 +148,11 @@ public class MbPostRequest {
 		this.userPaymentMethod = userPaymentMethod;
 	}
 
+	@Override
+	public String toString() {
+		return "MbPostRequest [mbPostRequestId=" + mbPostRequestId + ", orderId=" + orderId + ", amount=" + amount
+				+ ", description=" + description + ", url=" + url + ", clientCode=" + clientCode + ", clientName="
+				+ clientName + ", clientEmail=" + clientEmail + ", clientUsername=" + clientUsername + ", clientPhone="
+				+ clientPhone + ", expiryDays=" + expiryDays + ", userPaymentMethod=" + userPaymentMethod + "]";
+	}
 }

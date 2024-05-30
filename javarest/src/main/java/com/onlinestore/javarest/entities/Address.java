@@ -29,7 +29,7 @@ public class Address {
 	private String postalCode;
 
 	@Column(name = "is_removed")
-	private Boolean removed = false;
+	private boolean removed = false;
 
 	public Integer getAddressId() {
 		return addressId;
@@ -71,12 +71,17 @@ public class Address {
 		this.postalCode = postalCode;
 	}
 
-	public Boolean getRemoved() {
+	public boolean getRemoved() {
 		return removed;
 	}
 
-	public void setRemoved(Boolean removed) {
+	public void setRemoved(boolean removed) {
 		this.removed = removed;
 	}
 
+	@Override
+	public String toString() {
+		return "Address [addressId=" + addressId + ", streetName=" + streetName + ", city=" + city + ", region="
+				+ region + ", postalCode=" + postalCode + ", removed=" + removed + "]";
+	}
 }

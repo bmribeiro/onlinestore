@@ -35,4 +35,8 @@ public class OrderStatus {
 		this.status = status;
 	}
 
+	@Override
+	public String toString() {
+		return "OrderStatus [orderStatusId=" + orderStatusId + ", status=" + status + "]";
+	}
 }

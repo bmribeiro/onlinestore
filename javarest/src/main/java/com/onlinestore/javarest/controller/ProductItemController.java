@@ -12,14 +12,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.onlinestore.javarest.entities.Colour;
 import com.onlinestore.javarest.entities.ProductItem;
@@ -38,7 +37,7 @@ public class ProductItemController {
 	}
 
 	@GetMapping(path = "/product/{productId}")
-	public List<ProductItem> getProductItemsByProduct(@PathVariable int productId) {
+	public List<ProductItem> getProductItemsByProduct(@PathVariable int productId) throws IOException {
 		return productItemService.getProductItemsByProduct(productId);
 	}
 
@@ -48,19 +47,13 @@ public class ProductItemController {
 	}
 
 	@GetMapping(path = "/{id}")
-	public Optional<ProductItem> getProductItemById(@PathVariable Long id) {
+	public Optional<ProductItem> getProductItemById(@PathVariable Long id) throws IOException {
 		return productItemService.getProductItemById(id);
 	}
 
 	@PostMapping
-	public ResponseEntity<ProductItem> createProductItem(@RequestParam(name = "file") MultipartFile file,
-			@RequestPart(name = "productItem") String productCategoryJson)
-			throws JsonMappingException, JsonProcessingException {
-
-		ProductItem productItem = new ObjectMapper().readValue(productCategoryJson, ProductItem.class);
-
-		ProductItem savedProductItem = productItemService.addProductItem(productItem, file);
-
+	public ResponseEntity<ProductItem> createProductItem(@RequestBody ProductItem productCategory) {
+		ProductItem savedProductItem = productItemService.addProductItem(productCategory);
 		return new ResponseEntity<>(savedProductItem, HttpStatus.CREATED);
 	}
 

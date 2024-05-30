@@ -93,4 +93,10 @@ public class MbwayPostResponse {
 		this.mbwayPostRequest = mbwayPostRequest;
 	}
 
+	@Override
+	public String toString() {
+		return "MbwayPostResponse [mbwayPostResponseId=" + mbwayPostResponseId + ", amount=" + amount + ", message="
+				+ message + ", orderId=" + orderId + ", requestId=" + requestId + ", status=" + status
+				+ ", mbwayPostRequest=" + mbwayPostRequest + "]";
+	}
 }

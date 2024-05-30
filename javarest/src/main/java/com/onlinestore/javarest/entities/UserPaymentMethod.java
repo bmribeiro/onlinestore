@@ -86,4 +86,10 @@ public class UserPaymentMethod {
 		this.isDefault = isDefault;
 	}
 
+	@Override
+	public String toString() {
+		return "UserPaymentMethod [userPaymentMethodId=" + userPaymentMethodId + ", user=" + user + ", userBilling="
+				+ userBilling + ", paymentType=" + paymentType + ", expiryDate=" + expiryDate + ", isDefault="
+				+ isDefault + "]";
+	}
 }

@@ -93,4 +93,10 @@ public class MbwayPostRequest {
 		this.userPaymentMethod = userPaymentMethod;
 	}
 
+	@Override
+	public String toString() {
+		return "MbwayPostRequest [mbwayPostRequestId=" + mbwayPostRequestId + ", orderId=" + orderId + ", amount="
+				+ amount + ", mobileNumber=" + mobileNumber + ", email=" + email + ", description=" + description
+				+ ", userPaymentMethod=" + userPaymentMethod + "]";
+	}
 }

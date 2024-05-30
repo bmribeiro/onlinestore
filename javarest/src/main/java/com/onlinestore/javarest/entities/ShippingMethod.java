@@ -46,4 +46,8 @@ public class ShippingMethod {
 		this.price = price;
 	}
 
+	@Override
+	public String toString() {
+		return "ShippingMethod [shippingMethodId=" + shippingMethodId + ", name=" + name + ", price=" + price + "]";
+	}
 }

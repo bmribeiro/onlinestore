@@ -29,4 +29,9 @@ public class AttributeType {
     public void setAttributeName(String attributeName) {
         this.attributeName = attributeName;
     }
+
+	@Override
+	public String toString() {
+		return "AttributeType [attributeTypeId=" + attributeTypeId + ", attributeName=" + attributeName + "]";
+	}
 }

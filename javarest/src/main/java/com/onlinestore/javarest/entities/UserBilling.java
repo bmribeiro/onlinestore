@@ -57,4 +57,9 @@ public class UserBilling {
 		this.userBillingPhone = userBillingPhone;
 	}
 
+	@Override
+	public String toString() {
+		return "UserBilling [userBillingId=" + userBillingId + ", userBillingName=" + userBillingName
+				+ ", userBillingNif=" + userBillingNif + ", userBillingPhone=" + userBillingPhone + "]";
+	}
 }

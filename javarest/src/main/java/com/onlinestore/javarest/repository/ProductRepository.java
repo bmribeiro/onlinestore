@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.onlinestore.javarest.entities.Product;
-import com.onlinestore.javarest.entities.ProductCategory;
 
 @Repository
 public interface ProductRepository extends CrudRepository<Product, Integer> {

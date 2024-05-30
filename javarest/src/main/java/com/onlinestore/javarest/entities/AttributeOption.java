@@ -45,4 +45,9 @@ public class AttributeOption {
 		this.attributeOptionName = attributeOptionName;
 	}
 
+	@Override
+	public String toString() {
+		return "AttributeOption [attributeOptionId=" + attributeOptionId + ", attributeType=" + attributeType
+				+ ", attributeOptionName=" + attributeOptionName + "]";
+	}
 }

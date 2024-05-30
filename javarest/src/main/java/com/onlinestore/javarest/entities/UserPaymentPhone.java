@@ -61,4 +61,9 @@ public class UserPaymentPhone {
 		this.userPhoneToken = userPhoneToken;
 	}
 
+	@Override
+	public String toString() {
+		return "UserPaymentPhone [userPaymentPhoneid=" + userPaymentPhoneid + ", user=" + user + ", userPhone="
+				+ userPhone + ", userPhoneToken=" + userPhoneToken + "]";
+	}
 }

@@ -1,5 +1,6 @@
 package com.onlinestore.javarest.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,8 +13,10 @@ public class Brand {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer brandId;
 
+	@Column(name = "brand_name")
 	private String brandName;
 
+	@Column(name = "brand_description")
 	private String brandDescription;
 
 	public Integer getBrandId() {
@@ -38,5 +41,11 @@ public class Brand {
 
 	public void setBrandDescription(String brandDescription) {
 		this.brandDescription = brandDescription;
+	}
+
+	@Override
+	public String toString() {
+		return "Brand [brandId=" + brandId + ", brandName=" + brandName + ", brandDescription=" + brandDescription
+				+ "]";
 	}
 }

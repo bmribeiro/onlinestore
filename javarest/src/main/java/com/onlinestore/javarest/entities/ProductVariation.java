@@ -56,4 +56,9 @@ public class ProductVariation {
 		this.qtyInStock = qtyInStock;
 	}
 
+	@Override
+	public String toString() {
+		return "ProductVariation [productVariationId=" + productVariationId + ", productItem=" + productItem + ", size="
+				+ size + ", qtyInStock=" + qtyInStock + "]";
+	}
 }

@@ -111,4 +111,10 @@ public class ShopOrder {
 		this.orderStatus = orderStatus;
 	}
 
+	@Override
+	public String toString() {
+		return "ShopOrder [shopOrderId=" + shopOrderId + ", user=" + user + ", orderDate=" + orderDate
+				+ ", paymentMethod=" + paymentMethod + ", shippingAddress=" + shippingAddress + ", shippingMethod="
+				+ shippingMethod + ", orderTotal=" + orderTotal + ", orderStatus=" + orderStatus + "]";
+	}
 }

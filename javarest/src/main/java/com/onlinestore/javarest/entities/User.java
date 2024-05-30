@@ -117,4 +117,10 @@ public class User {
 		this.role = role;
 	}
 
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", userName=" + userName + ", userEmail=" + userEmail + ", userPassword="
+				+ userPassword + ", userToken=" + userToken + ", isActive=" + isActive + ", isGoogle=" + isGoogle
+				+ ", createdAt=" + createdAt + ", role=" + role + "]";
+	}
 }

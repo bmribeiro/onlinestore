@@ -71,4 +71,9 @@ public class UserDetail {
 		this.user = user;
 	}
 
+	@Override
+	public String toString() {
+		return "UserDetail [userDetailsId=" + userDetailsId + ", userNif=" + userNif + ", userPhone=" + userPhone
+				+ ", userPhoneToken=" + userPhoneToken + ", user=" + user + "]";
+	}
 }

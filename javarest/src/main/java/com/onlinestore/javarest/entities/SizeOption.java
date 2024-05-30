@@ -54,4 +54,9 @@ public class SizeOption {
 		this.sizeCategory = sizeCategory;
 	}
 
+	@Override
+	public String toString() {
+		return "SizeOption [sizeOptionId=" + sizeOptionId + ", sizeName=" + sizeName + ", sortOrder=" + sortOrder
+				+ ", sizeCategory=" + sizeCategory + "]";
+	}
 }

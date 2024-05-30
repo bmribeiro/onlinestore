@@ -6,10 +6,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import com.onlinestore.javarest.entities.ProductImage;
+import com.onlinestore.javarest.entities.ProductItemImage;
 
-public interface ProductImageRepository extends CrudRepository<ProductImage, Integer> {
+public interface ProductImageRepository extends CrudRepository<ProductItemImage, Integer> {
 
-	@Query("SELECT pi FROM ProductImage pi WHERE pi.productItem.productItemId = :productItemId")
-	List<ProductImage> getProductImagesByProductItem(@Param("productItemId") Integer productItemId);
+	@Query("SELECT pi FROM ProductItemImage pi WHERE pi.productItem.productItemId = :productItemId")
+	List<ProductItemImage> getProductImagesByProductItem(@Param("productItemId") Integer productItemId);
 }

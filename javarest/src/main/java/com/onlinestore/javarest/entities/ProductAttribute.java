@@ -46,4 +46,10 @@ public class ProductAttribute {
 	public void setAttributeOption(AttributeOption attributeOption) {
 		this.attributeOption = attributeOption;
 	}
+
+	@Override
+	public String toString() {
+		return "ProductAttribute [productAttributeId=" + productAttributeId + ", product=" + product
+				+ ", attributeOption=" + attributeOption + "]";
+	}
 }

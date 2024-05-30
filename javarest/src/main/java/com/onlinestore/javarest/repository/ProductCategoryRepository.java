@@ -11,7 +11,7 @@ import com.onlinestore.javarest.entities.ProductCategory;
 @Repository
 public interface ProductCategoryRepository extends JpaRepository<ProductCategory, Integer> {
 	
-	@Query("SELECT pc FROM ProductCategory pc WHERE pc.parentProductCategory IS NULL")
+    @Query("SELECT DISTINCT pc FROM ProductCategory pc LEFT JOIN FETCH pc.categoryImages WHERE pc.parentProductCategory IS NULL")
     List<ProductCategory> getProductCategoriesWithNullParent();
 	
 	@Query("SELECT pc FROM ProductCategory pc WHERE pc.parentProductCategory.id = :parentId")

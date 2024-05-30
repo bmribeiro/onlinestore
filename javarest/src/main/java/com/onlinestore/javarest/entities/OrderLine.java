@@ -74,4 +74,9 @@ public class OrderLine {
 		this.price = price;
 	}
 
+	@Override
+	public String toString() {
+		return "OrderLine [orderLineId=" + orderLineId + ", productItem=" + productItem + ", shopOrder=" + shopOrder
+				+ ", qty=" + qty + ", price=" + price + "]";
+	}
 }

@@ -40,4 +40,8 @@ public class Colour {
 		this.colourHex = colourHex;
 	}
 
+	@Override
+	public String toString() {
+		return "Colour [colourId=" + colourId + ", colourName=" + colourName + ", colourHex=" + colourHex + "]";
+	}
 }

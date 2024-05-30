@@ -4,7 +4,9 @@ import java.util.Arrays;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -14,23 +16,27 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
 @Entity
-@Table(name = "product_image")
-public class ProductImage {
+@Table(name = "product_item_image")
+public class ProductItemImage {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer productImageId;
+	@Column(name = "product_item_image_id")
+	private Integer productItemImageId;
 
-	@ManyToOne
-	@JoinColumn(name = "product_id")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "product_item_id", nullable = false)
 	@JsonBackReference
-	private Product product;
+	private ProductItem productItem;
 
+	@Column(name = "image_filename", length = 400)
 	private String imageFilename;
 
+	@Column(name = "image_order")
 	private Integer imageOrder;
 
-	private boolean isProductCover;
+	@Column(name = "is_item_cover")
+	private boolean isItemCover;
 
 	@Transient
 	private String imageBase64;
@@ -38,24 +44,24 @@ public class ProductImage {
 	@Transient
 	private byte[] image;
 
-	public ProductImage() {
+	public ProductItemImage() {
 		super();
 	}
 
-	public Integer getProductImageId() {
-		return productImageId;
+	public ProductItem getProductItem() {
+		return productItem;
 	}
 
-	public void setProductImageId(Integer productImageId) {
-		this.productImageId = productImageId;
+	public Integer getProductItemImageId() {
+		return productItemImageId;
 	}
 
-	public Product getProduct() {
-		return product;
+	public void setProductItemImageId(Integer productItemImageId) {
+		this.productItemImageId = productItemImageId;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setProductItem(ProductItem productItem) {
+		this.productItem = productItem;
 	}
 
 	public String getImageFilename() {
@@ -74,12 +80,12 @@ public class ProductImage {
 		this.imageOrder = imageOrder;
 	}
 
-	public boolean isProductCover() {
-		return isProductCover;
+	public boolean isItemCover() {
+		return isItemCover;
 	}
 
-	public void setProductCover(boolean isProductCover) {
-		this.isProductCover = isProductCover;
+	public void setItemCover(boolean isItemCover) {
+		this.isItemCover = isItemCover;
 	}
 
 	public String getImageBase64() {
@@ -100,9 +106,8 @@ public class ProductImage {
 
 	@Override
 	public String toString() {
-		return "ProductImage [productImageId=" + productImageId + ", product=" + product + ", imageFilename="
-				+ imageFilename + ", imageOrder=" + imageOrder + ", isProductCover=" + isProductCover + ", imageBase64="
-				+ imageBase64 + ", image=" + Arrays.toString(image) + "]";
+		return "ProductItemImage [productItemImageId=" + productItemImageId + ", productItem=" + productItem
+				+ ", imageFilename=" + imageFilename + ", imageOrder=" + imageOrder + ", isItemCover=" + isItemCover
+				+ ", imageBase64=" + imageBase64 + ", image=" + Arrays.toString(image) + "]";
 	}
-
 }

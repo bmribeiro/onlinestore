@@ -1,10 +1,7 @@
 package com.onlinestore.javarest.controller;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -32,60 +30,40 @@ public class ProductCategoryController {
 
 	@Autowired
 	private ProductCategoryService productCategoryService;
-
+	
 	@GetMapping
-	public List<ProductCategory> getAllProductCategories(@RequestParam(required = false) String parentProductCategory,
+	public ResponseEntity<List<ProductCategory>> getAllProductCategories(
+			@RequestParam(required = false) String parentProductCategory,
 			@RequestParam(required = false) Integer parentProductCategoryId) throws IOException {
 
-		List<ProductCategory> productsCategory = new ArrayList<ProductCategory>();
+		List<ProductCategory> productsCategory = new ArrayList<>();
 
 		// Parent
 		if (parentProductCategory != null && parentProductCategory.equals("null")) {
-			productsCategory = (List<ProductCategory>) productCategoryService.getProductCategoriesWithNullParent();
+			productsCategory = productCategoryService.getProductCategoriesWithNullParent();
 		}
-
 		// Child's
 		else if (parentProductCategoryId != null) {
-			productsCategory = (List<ProductCategory>) productCategoryService
+			productsCategory = productCategoryService
 					.getProductCategoriesFromParent(parentProductCategoryId.longValue());
 		}
-
 		// All
 		else {
-			productsCategory = (List<ProductCategory>) productCategoryService.getAllProductCategories();
+			productsCategory = productCategoryService.getAllProductCategories();
 		}
-
-		for (ProductCategory el : productsCategory) {
-
-			if (el.getCategoryImage() != null) {
-
-				String directoryPath = "C:/Users/Bruno/git/onlinestore/javarest/images";
-				directoryPath = directoryPath + "/" + el.getProductCategoryId().toString() + "/"
-						+ el.getCategoryImage();
-
-				byte[] imageBytes = Files.readAllBytes(Paths.get(directoryPath));
-				String imgEncodedString = Base64.getEncoder().encodeToString(imageBytes);
-				el.setImageBytes(imgEncodedString);
-			}
-		}
-
-		return productsCategory;
+		return ResponseEntity.ok(productsCategory);
 	}
 
 	@GetMapping(path = "/{id}")
-	public Optional<ProductCategory> getProductCategoryById(@PathVariable Long id) {
+	public Optional<ProductCategory> getProductCategoryById(@PathVariable Long id) throws IOException {
+		
 		return productCategoryService.getProductCategoryById(id);
 	}
 
 	@PostMapping()
-	public ResponseEntity<ProductCategory> createProductCategory(
-			@RequestParam(name = "file", required = false) MultipartFile file,
-			@RequestPart(name = "productCategory") String productCategoryJson) throws IOException {
+	public ResponseEntity<ProductCategory> createProductCategory(@RequestBody ProductCategory productCategory) {
 
-		ProductCategory productCategory = new ObjectMapper().readValue(productCategoryJson, ProductCategory.class);
-
-		ProductCategory savedProductCategory = productCategoryService.addProductCategory(productCategory, file);
-
+		ProductCategory savedProductCategory = productCategoryService.addProductCategory(productCategory);
 		return new ResponseEntity<>(savedProductCategory, HttpStatus.CREATED);
 
 	}
@@ -94,15 +72,13 @@ public class ProductCategoryController {
 	public ProductCategory updateProductCategory(@RequestParam(name = "file", required = false) MultipartFile file,
 			@RequestPart(name = "productCategory") String productCategoryJson) throws IOException {
 
-		System.out.println("JAVA Controller: " + file);
-
 		ProductCategory productCategory = new ObjectMapper().readValue(productCategoryJson, ProductCategory.class);
-
 		return productCategoryService.updateProductCategory(productCategory, file);
 	}
 
 	@DeleteMapping(path = "/{id}")
 	public ResponseEntity<Void> deleteProductCategoryById(@PathVariable Long id) {
+		
 		productCategoryService.deleteProductCategoryById(id);
 		return ResponseEntity.ok().build();
 	}

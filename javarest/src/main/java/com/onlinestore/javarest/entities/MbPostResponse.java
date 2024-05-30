@@ -126,4 +126,11 @@ public class MbPostResponse {
 		this.mbPostRequest = mbPostRequest;
 	}
 
+	@Override
+	public String toString() {
+		return "MbPostResponse [mbPostResponseId=" + mbPostResponseId + ", amount=" + amount + ", entity=" + entity
+				+ ", expiryDate=" + expiryDate + ", message=" + message + ", orderId=" + orderId + ", reference="
+				+ reference + ", requestId=" + requestId + ", status=" + status + ", mbPostRequest=" + mbPostRequest
+				+ "]";
+	}
 }
